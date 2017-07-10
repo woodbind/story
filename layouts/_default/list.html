@@ -1,0 +1,41 @@
+{{ define "main" }}
+        {{ with .Content }}
+          <div class="well">
+            {{.}}
+          </div>
+        {{ end }}
+{{ range .Paginator.Pages }}
+					<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in" id="first">
+						<div class="content">
+							<h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+							{{ if .Params.subtitle }}
+                  <h3>
+                    {{ .Params.subtitle }}
+                  </h3>
+              {{ end }}
+              <h4>
+              	{{ default (i18n "dateFormat") .Site.Params.dateformat | .Date.Format | i18n "postedOnDate" }}
+              </h4>
+             	{{ if .Params.tags }}
+                <h4 class="post-meta">
+                  {{ range .Params.tags }}
+                    #<a href="{{ $.Site.LanguagePrefix }}/tags/{{ . | urlize }}">{{ . }}</a>&nbsp;
+                  {{ end }}
+                </h4>
+              {{ end }}
+							{{ if .Truncated }}
+                  {{ .Summary }}
+							      <ul class="actions vertical">
+								      <li><a href="{{ .Permalink }}" class="button">Learn More{{ i18n "readMore" }}</a></li>
+							      </ul>
+              {{ else }}
+                  {{ .Content }}
+              {{ end }}
+						</div>
+						<div class="image">
+							<img src="images/spotlight01.jpg" alt="" />
+						</div>
+					</section>
+{{ end }}
+
+{{ end }}

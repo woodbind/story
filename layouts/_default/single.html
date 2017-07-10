@@ -1,0 +1,32 @@
+{{ define "main" }}
+					<section class="wrapper style1 align-center">
+						<div class="inner">
+							<h2>{{ .Title }}</h2>
+							<p>{{ if .Params.subtitle }}{{ .Params.subtitle }}&nbsp;|&nbsp;{{ end }}
+    	    {{ dateFormat "January 2, 2006" .Date }}
+    	    {{ if .Params.tags }}
+    	          &nbsp;|&nbsp;
+                {{ range .Params.tags }}
+                  <a href="{{ $.Site.LanguagePrefix }}/tags/{{ . | urlize }}">{{ . }}</a>&nbsp;
+                {{ end }}
+          {{ end }} <em>might</em> find useful (and yup, they look fine with any <span class="demo-controls">appearance</span>).
+              </p>
+							<div class="index align-left">
+
+								<!-- Text -->
+									<section>
+										<header>
+											<h3>Text</h3>
+										</header>
+										<div class="content">
+
+                      {{ .Content }}
+
+										</div>
+									</section>
+								</div>
+
+						</div>
+					</section>
+
+{{ end }}
